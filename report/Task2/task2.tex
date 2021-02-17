@@ -4,15 +4,15 @@
 
 The automatic method finds tens of thousands of points of interest in both images and then during matching stage selects pairs of points in the images that it thinks correspond to each other based on a feature matching algorithm. This results in around 3500 correspondence points being identified by the algorithm. The quality of these correspondences was measured by estimating a projective transformation matrix using all the correspondences found by a method and then applying that transformation to each correspondence pair, measuring the error (euclidean distance) between the transformed point and the actual key point in the second image. So, if $\mathbf{a}_i, \mathbf{b}_i$ are a pair of correspondences, i.e $\mathbf{a}$ is a point in image 1 and $\mathbf{b}$ is a point in image 2 that correspond to the same point in 3D space, and there is a projective transformation matrix $\mathbf{H}$ which is derived from set $\mathbf{S} = \{(\mathbf{a}_1, \mathbf{b}_1), (\mathbf{a}_2, \mathbf{b}_2), (\mathbf{a}_3, \mathbf{b}_3) \dots\} $. Then the error for a correspondence pair, $\mathbf{E}_i$, is equal to $||\mathbf{Ha_i} - \mathbf{b_i}|| $ given that $ s = (\mathbf{a_i}, \mathbf{b_i}) $ and $ s \in \mathbf{S}$ and the set $\mathbf{E}$ contains all errors.
 
-As can be seen in \autoref{correspondence:table} the points in the manual method have about equal error, whereas the automatic method has many accurate correspondences and a small amount which are extremely erroneous. The sheer amount of points identified by the automatic does then allow it to create a more accurate transform. It should also be noted that during the estimation of the transform, outliers are removed and large percentage of the correspondences found by the automatic method were deemed outliers.
+As can be seen in \autoref{correspondence:table} the points in the manual method have about equal error, whereas the automatic method has many accurate correspondences and a small amount which are extremely erroneous. The sheer amount of points, however, identified by the automatic does allow it to create a more accurate transform, but it should be noted that during the estimation of the transform, outliers are removed and large percentage of the correspondences found by the automatic method were deemed outliers. On the other hand, the accuracy of the manual method mainly comes from having a calibration grid in both images, which allowed for better matching of correspondences. Without the grids, the variance of the errors from the manual would likely increase, whilst the automatic takes correspondence from as much of the image as it can, meaning it's error values would be less affected. Images showing the key points and their correspondences for both manual and automatic methods can be found in \autoref{ap:kp}.
 
 
 \begin{table}[]
    \begin{tabular}{c|l|ll}
    \multirow{2}{*}{Method} & \multirow{2}{*}{Quantity} & \multicolumn{2}{c}{Quality/ Error(px)}        \\ \cline{3-4} 
                            &                           & \multicolumn{1}{l|}{Mean} & Median \\ \hline
-   Manual                  & 48                       & \multicolumn{1}{l|}{88.02}  & 74.60    \\
-   Automatic (KAZE)        & 3495                       & \multicolumn{1}{l|}{273.77}  & 4.23   
+   Manual                  & 44                       & \multicolumn{1}{l|}{16.05}  & 12.19    \\
+   Automatic (KAZE)        & 31431                       & \multicolumn{1}{l|}{72.51}  & 2.34   
 \end{tabular}
 \caption{Quality \& quantity of key point correspondences}
 \label{correspondence:table}

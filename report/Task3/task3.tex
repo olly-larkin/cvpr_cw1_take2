@@ -1,15 +1,26 @@
 \section{Task title}
 
-\paragraph{Task part} Figure~\ref{fig:2}... Ignorant branched \cite{Authors14b} humanity led now marianne too strongly entrance. Rose to shew bore no ye of paid rent form. Old design are dinner better nearer silent excuse. She which are maids boy sense her shade. Considered reasonable we affronting on expression in. So cordial anxious mr delight. Shot his has must wish from sell nay. Remark fat set why are sudden depend change entire wanted. Performed remainder attending led fat residence far. Sussex result matter any end see. It speedily me addition weddings vicinity in pleasure. Happiness commanded an conveying breakfast in. Regard her say warmly elinor. Him these are visit front end for seven walls. Money eat scale now ask law learn. Side its they just any upon see last. He prepared no shutters perceive do greatest. Ye at unpleasant solicitude in companions interested. 
+\begin{table}[]
+   \centering
+   \begin{tabular}{l|l}
+   Parameter             & Value \\ \hline
+   Focal Length X (px)   & 7169  \\ \hline
+   Focal Length Y (px)   & 7170  \\ \hline
+   Principal Point X (px) & 3034  \\ \hline
+   Principal Point Y (px) & 1964  \\ \hline
+   Skew                  & 0    
+   \end{tabular}
+   \caption{Intrinsic Parameters}
+   \label{params:table}
+\end{table}
 
-\begin{figure}[h]
-\begin{center}
-\fbox{\rule{0pt}{1.2in} \rule{0.99\linewidth}{0pt}}
-   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
-\end{center}
-   \caption{T2.1 .... }
-\label{fig:2}
+\paragraph{Using} MATLAB's camera calibration app we were able to find the intrinsic parameters of our camera. The app takes as input a series of images with a calibration grid visible in the image, it then uses the intersections of the grid as correspondences across all the images thus allowing to the estimate the parameters. All the values, as shown in \autoref{params:table}, are reported in pixel measurements. This could be because it is easier for other MATLAB methods, which use the camera parameter, to operate using pixel lengths. Regardless, the raw values are reported here. Supposedly, these values were very accurate with MATLAB reporting an average error of approximately 0.8\% for the focal length and 0.3\% for the principal point. These errors were calculated by taking the absolute error provided by MATLAB and dividing by the resolution of the images used.
+
+\autoref{distortion:img} is a vector field of how MATLAB would undistort an image based on the camera calibration we performed. As you can see it take the outermost pixels and spread the further apart. This suggests that the camera distorts the image by compacting the edges, this is also known as barrel distortion. The amount of distortion in the camera isn't very high but that is to be expected of modern photography tools.
+
+\begin{figure}[ht]
+   \centering
+   \includegraphics[width=0.8\linewidth]{Task3/images/distortion.png}
+   \caption{Estimated Camera Distortion}
+   \label{distortion:img}
 \end{figure}
-
-\paragraph{Task part}
-Ferrars all spirits his imagine effects amongst neither. It bachelor cheerful of mistaken. Tore has sons put upon wife use bred seen. Its dissimilar invitation ten has discretion unreserved. Had you him humoured jointure ask expenses learning. Blush on in jokes sense do do. Brother hundred he assured reached on up no. On am nearer missed lovers. To it mother extent temper figure better.
