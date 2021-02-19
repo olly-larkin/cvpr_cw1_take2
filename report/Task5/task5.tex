@@ -1,15 +1,30 @@
-\section{Task title}
+\section{3D Geometry}
 
-\paragraph{Task part} Figure~\ref{fig:2}... Ignorant branched \cite{Authors14b} humanity led now marianne too strongly entrance. Rose to shew bore no ye of paid rent form. Old design are dinner better nearer silent excuse. She which are maids boy sense her shade. Considered reasonable we affronting on expression in. So cordial anxious mr delight. Shot his has must wish from sell nay. Remark fat set why are sudden depend change entire wanted. Performed remainder attending led fat residence far. Sussex result matter any end see. It speedily me addition weddings vicinity in pleasure. Happiness commanded an conveying breakfast in. Regard her say warmly elinor. Him these are visit front end for seven walls. Money eat scale now ask law learn. Side its they just any upon see last. He prepared no shutters perceive do greatest. Ye at unpleasant solicitude in companions interested. 
+\paragraph{Task 5.1} The first step in this task is to find the epipolar lines of two images and then transform them via stereo rectification. The two images chosen did not contain epipoles due to how the camera moved between photos. The result of the rectification is shown in \autoref{fig:5_rectified}. The rectification process parallelises the epipolar lines and makes them horizontal in both images.
 
-\begin{figure}[h]
-\begin{center}
-\fbox{\rule{0pt}{1.2in} \rule{0.99\linewidth}{0pt}}
-   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
-\end{center}
-   \caption{T2.1 .... }
-\label{fig:2}
+\begin{figure}
+   \centering
+   \begin{subfigure}{0.49\linewidth}
+       \centering
+       \includegraphics[width=0.9\linewidth]{Task5/images/rectified_1.png}
+       \caption{First}
+       \label{subfig:5_rectified:1}
+   \end{subfigure}
+   \begin{subfigure}{0.49\linewidth}
+       \centering
+       \includegraphics[width=0.9\linewidth]{Task5/images/rectified_2.png}
+       \caption{Second}
+       \label{subfig:5_rectified:2}
+   \end{subfigure}
+   \caption{Stereo rectified images}
+   \label{fig:5_rectified}
 \end{figure}
 
-\paragraph{Task part}
-Ferrars all spirits his imagine effects amongst neither. It bachelor cheerful of mistaken. Tore has sons put upon wife use bred seen. Its dissimilar invitation ten has discretion unreserved. Had you him humoured jointure ask expenses learning. Blush on in jokes sense do do. Brother hundred he assured reached on up no. On am nearer missed lovers. To it mother extent temper figure better.
+\paragraph{Task 5.2} Taking the disparity between the two rectified images gives an impression of depth, as a larger disparity suggests the those features are in the foreground, while a small disparity implies the feature is further away. This is achieved by computing the Census transform of the rectified stereo pair, before computing the hamming distance between pixels, followed by applying the semi-global matching method \cite{disparity_matlab}. The depth map generated from this process is shown in \autoref{fig:5_depthMap}.
+
+\begin{figure}
+   \centering
+   \includegraphics[width=\linewidth]{Task5/images/depthMap.png}
+   \caption{Depth map - larger disparity (red) indicates closer to the camera}
+   \label{fig:5_depthMap}
+\end{figure}

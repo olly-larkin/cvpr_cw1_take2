@@ -1,3 +1,59 @@
 \section{Transformation Estimation}
 
-\paragraph{Task 1} requires that we calculate a homography matrix to describe the transformation between two images belonging to the \HG set, along with their keypoints and correspondences.
+\paragraph{Task 4.1} We were required to calculate a homography matrix to describe the transformation between two images belonging to the \HG set, along with their keypoints and correspondences. 
+
+Firstly, the keypoints needed to be found. This is represented in \autoref{fig:4_hg_matched_points} as 2 images overlaying each other forming an anaglyph with yellow lines connecting their matching key points. The directions of the correspondence lines demonstrates the rotation present between the two images. While the direction of the lines in not shown in the image, they are consistent with the rotation direction. The homography matrix calculated from these correspondence points is shown in \autoref{eq:4_hg_matrix}. 
+
+\begin{equation}
+    \begin{bmatrix}
+        \num{0.9691} & \num{-0.2165} & \num{444.7968} \\
+        \num{0.3086} & \num{0.9748} & \num{-696.0182} \\
+        \num{3.8284e-06} & \num{-1.7876e-06} & \num{1}
+    \end{bmatrix}
+    \label{eq:4_hg_matrix}
+\end{equation}
+
+KAZE was used to collect key points as, through experimentation, it was found that to produce the most reliably good results. The result of applying the transform to the key points from the first image is shown in \autoref{fig:4_hg_transform_error}. The more yellow, the more error, as the yellow lines denote the difference between projected points and actual points. The large green section on the table implies that the algorithm was able to find many unique features and matched them well with the points in the other image, likely due to the texture of the table. The yellow on the grid and object implies that the algorithm struggled to find matching features.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Task4/images/matchedPoints_HG.png}
+    \caption{An anaglyph showing 2 images overlaying each other with lines draw between the matching keypoints}
+    \label{fig:4_hg_matched_points}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Task4/images/tansformError_HG.png}
+    \caption{Key points from the first image transformed to the second with the errors between the projected and actual points shown as yellow lines}
+    \label{fig:4_hg_transform_error}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Task4/images/35_FD_epipole.png}
+        \caption{Epipole and epipolar lines \linebreak in first image}
+        \label{subfig:4_fd_epipoles:1}
+    \end{subfigure}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Task4/images/33_FD_epipole.png}
+        \caption{Epipole and epipolar lines in second image}
+        \label{subfig:4_fd_epipoles:2}
+    \end{subfigure}
+    \caption{}
+    \label{fig:4_fd_epipoles}
+\end{figure}
+
+\paragraph{Task 4.2} We were required to produce a fundamental matrix transformation between a pair of images in the \FD set. The images chosen represent a movement of the camera towards the object and slightly to the right without rotation. This produces a single epipole in both images located in very similar location, as shown in \autoref{fig:4_fd_epipoles}. The epipole is located near the top of the images because the cameras are both pointing slightly downwards at the same angle. The epipole being located in the right half of the image is because the camera moved slightly to the right and forward between the images. This is demonstrated further in \autoref{fig:epipole_diagram} in Appendix \ref{ap:epipole_diagrams}. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Task4/images/vanishing_lines.png}
+    \caption{Vanishing lines, vanishing points, and the horizon line}
+    \label{fig:4_vanishing_lines}
+\end{figure}
+
+The second step was to find the vanishing lines, vanishing points and the horizon in the image. The vanishing lines are formed by any set of lines in the image that are parallel in the real world, which converge in the image to the vanishing point for those lines. Any vanishing lines that are made from lines parallel to the ground should converge to a vanishing point on the horizon. The horizon can be found by joining these points. This is demonstrated in \autoref{fig:4_vanishing_lines}.

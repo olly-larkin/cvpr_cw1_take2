@@ -13,7 +13,7 @@ pairs = matchFeatures(feats1, feats2, "Unique", true, "Method", 'Approximate');
 matchedPoints1 = vpts1(pairs(:,1));
 matchedPoints2 = vpts2(pairs(:,2));
 
-[F, inlierIdxAuto, status] = estimateFundamentalMatrix(matchedPoints1, matchedPoints2, 'NumTrials', 2500, 'Method', 'LTS', 'InlierPercentage', 10);
+[F, inlierIdxAuto, status] = estimateFundamentalMatrix(matchedPoints1, matchedPoints2, 'NumTrials', 10000, 'Method', 'RANSAC');
 
 usedPoints1 = matchedPoints1(inlierIdxAuto);
 usedPoints2 = matchedPoints2(inlierIdxAuto);
@@ -30,11 +30,6 @@ epiPoints1 = lineToBorderPoints(epiLines1, size(img1));
 
 figure;
 imshow(img1);
-if isIn1
-    title('Contains Epipole');
-else
-    title('Does Not Contain Epipole');
-end
 hold on;
 plot(usedPoints1.Location(:,1), usedPoints1.Location(:,2), 'go');
 line(epiPoints1(:,[1,3])',epiPoints1(:,[2,4])');
@@ -48,11 +43,6 @@ epiPoints2 = lineToBorderPoints(epiLines2, size(img2));
 
 figure;
 imshow(img2);
-if isIn2
-    title('Contains Epipole');
-else
-    title('Does Not Contain Epipole');
-end
 hold on;
 plot(usedPoints2.Location(:,1), usedPoints2.Location(:,2), 'go');
 line(epiPoints2(:,[1,3])',epiPoints2(:,[2,4])');
