@@ -1,4 +1,4 @@
-\section{Task title}
+\section{Camera Calibration}
 
 \begin{table}[]
    \centering
@@ -14,9 +14,9 @@
    \label{params:table}
 \end{table}
 
-\paragraph{Using} MATLAB's camera calibration app we were able to find the intrinsic parameters of our camera. The app takes as input a series of images with a calibration grid visible in the image, it then uses the intersections of the grid as correspondences across all the images thus allowing to the estimate the parameters. All the values, as shown in \autoref{params:table}, are reported in pixel measurements. This could be because it is easier for other MATLAB methods, which use the camera parameter, to operate using pixel lengths. Regardless, the raw values are reported here. Supposedly, these values were very accurate with MATLAB reporting an average error of approximately 0.8\% for the focal length and 0.3\% for the principal point. These errors were calculated by taking the absolute error provided by MATLAB and dividing by the resolution of the images used.
+\paragraph{Task 3.1} Using MATLAB's camera calibration app we were able to find the intrinsic parameters of our camera. The app takes as input a series of images with a calibration grid visible in the image, it then uses the intersections of the grid as correspondences across all the images thus allowing to the estimate the parameters. All the values, as shown in \autoref{params:table}, are reported in pixel measurements. This could be because it is easier for other MATLAB methods, which use the camera parameter, to operate using pixel lengths. Regardless, the raw values are reported here. Supposedly, these values were very accurate with MATLAB reporting an average error of approximately 0.8\% for the focal length and 0.3\% for the principal point. These errors were calculated by taking the absolute error provided by MATLAB and dividing by the resolution of the images used.
 
-\autoref{distortion:img} is a vector field of how MATLAB would undistort an image based on the camera calibration we performed. As you can see it take the outermost pixels and spread the further apart. This suggests that the camera distorts the image by compacting the edges, this is also known as barrel distortion. The amount of distortion in the camera isn't very high but that is to be expected of modern photography tools.
+\paragraph{Task3.2} \autoref{distortion:img} is a vector field of how MATLAB would undistort an image based on the camera calibration we performed. As you can see it take the outermost pixels and spread the further apart. This suggests that the camera distorts the image by compacting the edges, this is also known as barrel distortion. The amount of distortion in the camera isn't very high but that is to be expected of modern photography tools.
 
 \begin{figure}[ht]
    \centering
